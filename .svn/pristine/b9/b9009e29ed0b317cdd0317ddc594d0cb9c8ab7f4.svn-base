@@ -1,0 +1,55 @@
+package com.web.projectplanner.a02_service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.web.projectplanner.a03_dao.TaskDao;
+import com.web.projectplanner.a03_dao.TodoDao;
+import com.web.projectplanner.a04_vo.Task;
+import com.web.projectplanner.a04_vo.Todo;
+
+@Service
+public class TaskService {
+	@Autowired
+    private TaskDao taskDAO;
+	@Autowired
+	private TodoDao todoDao;
+	
+    public List<Task> getAllTasks() {
+        return taskDAO.findAll();
+    }
+
+    public int insertTask(Task task) {
+        return taskDAO.insert(task);
+    }
+
+    public void updateTask(Task task) {
+        taskDAO.update(task);
+    }
+
+    public void deleteTask(Long taskid) {
+        taskDAO.delete(taskid);
+    }
+
+    public List<Task> getTasksByProjectId(Long projectid) {
+        return taskDAO.findTasksByProjectId(projectid);
+    }
+    public int insertTask(Task task, String empno) {
+        int taskResult = taskDAO.insert(task);
+        
+        if(taskResult > 0) {
+            Todo todo = new Todo();
+            todo.setTaskname(task.getText());
+            todo.setStart_date(task.getStart_date());
+            todo.setEnd_date(task.getEnd_date());
+            todo.setStatus("Pending");
+            todo.setEmpno(empno);
+            todoDao.insert(todo);
+        }
+
+        return taskResult;
+    }
+
+}

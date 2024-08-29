@@ -1,0 +1,69 @@
+package com.web.projectplanner.a04_vo;
+
+public class Budget { //프로젝트 예산 목록
+	  private int projectid; //프로젝트 아이디  
+	  
+	  private String BudId; //예산 항목 
+	  private int Budget; //예상비용
+	  private int BudActual; //실제비용
+	  private int budUse; //예산 사용 비율(%) : 예상비용/실제비용 
+	  private String status; //사용 상태
+	  private String approval; //승인 상태 
+	public Budget() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Budget(int projectid, String budId, int budget, int budActual, int budUse, String status, String approval) {
+		super();
+		this.projectid = projectid;
+		BudId = budId;
+		Budget = budget;
+		BudActual = budActual;
+		this.budUse = budUse;
+		this.status = status;
+		this.approval = approval;
+	}
+	public int getProjectid() {
+		return projectid;
+	}
+	public void setProjectid(int projectid) {
+		this.projectid = projectid;
+	}
+	public String getBudId() {
+		return BudId;
+	}
+	public void setBudId(String budId) {
+		BudId = budId;
+	}
+	public int getBudget() {
+		return Budget;
+	}
+	public void setBudget(int budget) {
+		Budget = budget;
+	}
+	public int getBudActual() {
+		return BudActual;
+	}
+	public void setBudActual(int budActual) {
+		BudActual = budActual;
+	}
+	public int getBudUse() {
+		return budUse;
+	}
+	public void setBudUse(int budUse) {
+		this.budUse = budUse;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getApproval() {
+		return approval;
+	}
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+	  
+}

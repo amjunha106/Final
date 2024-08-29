@@ -1,0 +1,62 @@
+package com.web.projectplanner.a03_dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.web.projectplanner.a04_vo.Calendar;
+
+@Mapper
+public interface CalendarDao {
+
+	// 개인 캘린더
+	@Select("select id, title, writer, start1 \"start\", end1 \"end\", content, backgroundColor,\r\n"
+			+ "		textColor, allDay, urlLink, div, projectid\r\n"
+			+ "from calendar2 where writer = #{writer} and div = '개인' and projectid=#{projectid}")
+	List<Calendar> getCalendarList(@Param("writer")String writer, 
+								   @Param("projectid")int projectid);
+	
+	// 팀 캘린더
+	@Select("select id, title, writer, start1 \"start\", end1 \"end\", content, backgroundColor,\r\n"
+			+ "		textColor, allDay, urlLink, div, projectid\r\n"
+			+ "from calendar2 where projectid = #{projectid} and div = '팀'")
+	List<Calendar> getCalendarList2(@Param("projectid")int id);
+	
+	// 간트 캘린더 
+	@Select("select id, title, writer, start1 \"start\", end1 \"end\", content, backgroundColor,\r\n"
+			+ "		textColor, allDay, urlLink, div, projectid\r\n"
+			+ "from calendar2 where projectid = #{projectid}")
+	List<Calendar> getCalendarList3(@Param("projectid")int projectid);
+	
+	
+	// 캘린더 등록
+	@Insert("INSERT INTO calendar2 values(cal_seq2.nextval,\r\n"
+			+ "	#{title},#{writer},#{start},#{end},\r\n"
+			+ "	#{content},#{backgroundColor},#{textColor},#{allDay},\r\n"
+			+ "	#{urlLink})")
+	int insertCalendar(Calendar ins);
+
+	// 캘린더 수정
+	@Update("UPDATE CALENDAR2 \r\n"
+			+ "SET title = #{title},\r\n"
+			+ "    start1=#{start},\r\n"
+			+ "    end1=#{end},\r\n"
+			+ "    content=#{content},\r\n"
+			+ "    backgroundColor=#{backgroundColor},\r\n"
+			+ "    textColor=#{textColor},\r\n"
+			+ "    allDay = #{allDay},\r\n"
+			+ "    urlLink=#{urlLink}\r\n"
+			+ "WHERE id = #{id} and writer = #{writer}")
+	int updateCalendar(Calendar upt);
+
+	// 캘린더 삭제
+	@Delete("DELETE FROM calendar2\r\n"
+			+ "WHERE id = #{id} and writer = #{writer}")
+	int deleteCalendar(@Param("id") int id, @Param("writer")String writer);
+
+}

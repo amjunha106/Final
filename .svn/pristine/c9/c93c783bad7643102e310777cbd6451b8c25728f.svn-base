@@ -1,0 +1,59 @@
+package com.web.projectplanner.a04_vo;
+
+public class Budget { //프로젝트 예산 목록 페이지
+		private int budid; //예산 아이디
+	    private String budcontent; // 예산 항목 
+	    private int budget; // 예상비용
+	    private int budactual; // 실제비용
+	    private String status; // 사용 상태  
+	    private String approval; //결재 상태
+		public int getBudid() {
+			return budid;
+		}
+		public void setBudid(int budid) {
+			this.budid = budid;
+		}
+		public String getBudcontent() {
+			return budcontent;
+		}
+		public void setBudcontent(String budcontent) {
+			this.budcontent = budcontent;
+		}
+		public int getBudget() {
+			return budget;
+		}
+		public void setBudget(int budget) {
+			this.budget = budget;
+		}
+		public int getBudactual() {
+			return budactual;
+		}
+		public void setBudactual(int budactual) {
+			this.budactual = budactual;
+		}
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
+		public String getApproval() {
+			return approval;
+		}
+		public void setApproval(String approval) {
+			this.approval = approval;
+		}
+		public Budget(int budid, String budcontent, int budget, int budactual, String status, String approval) {
+			super();
+			this.budid = budid;
+			this.budcontent = budcontent;
+			this.budget = budget;
+			this.budactual = budactual;
+			this.status = status;
+			this.approval = approval;
+		}
+		public Budget() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+	  }

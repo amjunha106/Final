@@ -1,0 +1,37 @@
+package com.web.projectplanner.a02_service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.web.projectplanner.a03_dao.TaskDao;
+import com.web.projectplanner.a04_vo.Task;
+
+@Service
+public class TaskService {
+	@Autowired
+    private TaskDao taskDAO;
+
+    public List<Task> getAllTasks() {
+        return taskDAO.findAll();
+    }
+
+    public int insertTask(Task task) {
+        return taskDAO.insert(task);
+    }
+
+    public void updateTask(Task task) {
+        taskDAO.update(task);
+    }
+
+    public void deleteTask(Long taskid) {
+        taskDAO.delete(taskid);
+    }
+
+    public List<Task> getTasksByProjectId(Long projectid) {
+        return taskDAO.findTasksByProjectId(projectid);
+    }
+
+
+}

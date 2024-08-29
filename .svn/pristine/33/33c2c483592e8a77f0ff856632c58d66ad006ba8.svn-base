@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/a00_com/jquery-ui.css">
+<style>
+.h2 {
+	width: 50%;
+	border-radius: 10px;
+	text-align: center;
+	padding: 10px;
+	margin: 50px auto 100px;
+	box-shadow: 2px 4px 6px gray;
+	background: #4E73DF
+}
+
+.content {
+	border: 3px dotted black;
+	width: 80%;
+	border-radius: 20px;
+	padding: 30px;
+	margin: auto;
+	height: 600px;
+	background: #F4F4F4;
+}
+.input01 {
+	border: none;
+	background: #F4F4F4;
+	font-size:20px;
+}
+.div01 {
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 1px 2px 2px grey;
+	margin: 10px;
+	padding: 20px;
+	background: #F4F4F4;
+	font-weight: bold;
+}
+.table01 {
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 1px 2px 2px grey;
+	margin: 10px;
+	padding: 20px;
+	background: #F4F4F4;
+	width:98%;
+	height:auto;
+}
+.th01{
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 1px 2px 2px grey;
+}
+th, td{
+	border:2px solid black;
+	border-radius: 10px;
+	box-shadow: 1px 2px 2px grey;
+	text-align:center;
+	padding:5px;
+}
+.Btn01 {
+	background:#4E73DF;
+	float: right;
+	border-radius: 10px;
+	margin-right:10px;
+	font-size:20px;
+}
+.Btn01:hover {
+	box-shadow: 2px 2px 2px grey;
+}
+li{
+	list-style-type: none;
+	display:inline;
+	}
+li>a{
+	border:2px solid black;
+	border-radius:10px;
+	text-decoration: none;
+	color:black;
+	font-size:15px;
+	float:right;
+	margin:10px;
+	padding:5px;
+	background:#4E73DF;
+}
+li>a:hover{
+box-shadow: 2px 2px 2px grey;
+}
+input:focus {
+  outline: none;
+}
+</style>
+<script src="/a00_com/jquery.min.js"></script>
+<script src="https://unpkg.com/vue" type="text/javascript"></script>
+<script src="https://unpkg.com/axios" type="text/javascript"></script>
+<script src="https://unpkg.com/date-fns@2.30.0/dist/date-fns.min.js"></script>
+<script
+	src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+ 		const BASEURL="/";
+		var vm = Vue.createApp({
+			name:"App",
+			data(){
+				return {msg:"자유게시판",
+						sch: {
+		                subject: "", // 추가된 부분
+		                writer: ""  // 추가된 부분
+		            	},// 검색
+						FreeBoard:{
+							no: 0,
+                            refno: 0,
+                            subject: "",
+                            content: "",
+                            writer: "",
+                            readcnt: 0,
+                            regdte: new Date(), // 날짜를 문자열로 처리할 경우
+                            uptdte: new Date(), // 날짜를 문자열로 처리할 경우
+                            reports: [], // 파일 업로드를 위한 배열
+                            fnames: []
+						},
+						 flist: [], // 검색된 게시물 리스트
+	                     insBtn: true // 등록 버튼 표시 여부
+				};
+			},
+			methods:{
+				insFreeboard(){
+					if(confirm("등록하시겠습니까?")){
+						console.log("등록하는게시물")
+						//console.log(emp)
+						console.log($("#frm02").serialize())
+						var vm = this
+						// axios.post(요청url,전송요청값) 
+						axios.post(BASEURL+"empInsert.do", $("#frm02").serialize()
+
+						).then(function(response){
+							console.log(response.data)
+							console.log(response.data.result)
+							var msg = response.data.result
+							
+							alert(msg)
+							vm.search()
+							// 등록 후, 모델 데이터 초기화
+							vm.emp={}
+							vm.emp.deptno=0 // 부서를 초기 선택										
+							
+						}).catch(function(err){
+							console.log(err)
+						})
+						
+					}
+					// aios 등록 	
+				},
+				search(){
+					// 검색을 이벤트를 클릭하거나, 호출 처리할 핸들러함수 선언.
+					axios.get(BASEURL+"freeBoardList1?subject="+this.sch.subject+"&writer="+this.sch.writer)
+					.then((response)=>{
+						var list=response.data.flist
+						console.log(list)
+						$(list).each(function(idx, board){
+							board.regdte = board.regdte.split("T")[0]
+						})
+						this.flist = list // 모델 데이터에 할당..
+					})
+					.catch((err)=>{
+						console.log("# 에러 발생 #")
+						console.log(err)
+					});
+				},
+				goPage(pCnt) {
+	                this.sch.curPage = pCnt; // 현재 페이지 업데이트
+	                this.search(); // 새로운 페이지 데이터 요청
+	            },
+	            goDetail(no) {
+	            	location.href = `freeBoardDetail?no=${no}`; // 상세 페이지로 이동
+	            },
+	            formatDate(date) {
+	                if (window.dateFns && window.dateFns.format) {
+	                    return window.dateFns.format(new Date(date), 'yyyy-MM-dd');
+	                } else {
+	                    console.error("date-fns library is not loaded correctly");
+	                    return date;
+	                }
+	            }
+			},
+			created(){
+				this.search();
+			}
+		}).mount(".container");
+		console.log(window.dateFns); // dateFns 객체가 정의되어 있는지 확인
+		console.log(window.dateFns.format); // format 함수가 정의되어 있는지 확인
+	});
+</script>
+</head>
+
+<body>
+<div class="container">
+	<div class="jumbotron text-center">
+		<h2 class="h2">{{msg}}</h2>
+
+	</div>
+
+	<div class="content">
+		<form id="frm01" class="form" method="post">
+			<nav class="div01">
+				<input v-model="sch.subject" @keyup.enter="search" class="input01" placeholder="제목" />
+				<input v-model="sch.writer" @keyup.enter="search" class="input01" placeholder="작성자" />
+				<button @click="search" class="Btn01" type="button">Search</button>
+				<button id="regBtn" @click="insFreeboard" class="Btn01" id="regBtn"
+				type="button">Regist</button>
+			</nav>
+			<input type="hidden" name="curPage" v-model="sch.curPage" />
+		</form>
+		<table class="table01">
+			<col width="10%">
+			<col width="50%">
+			<col width="15%">
+			<col width="15%">
+			<col width="10%">
+			<thead>
+				<tr>
+					<th class="th01">번호</th>
+					<th class="th01">제목</th>
+					<th class="th01">작성자</th>
+					<th class="th01">작성일</th>
+					<th class="th01">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="fd in flist" :key="fd.no" @dblclick="detail(fd.no)">
+					<td class="td01">{{fd.cnt}}</td>
+					<td>{{fd.subject}}</td>
+					<td>{{fd.writer}}</td>
+					<td>{{ formatDate(fd.regdte) }}</td>
+					<td>{{fd.readcnt}}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<ul class="pagination justify-content-end">
+                <li v-if="sch.curPage > 1">
+                    <a href="javascript:void(0);" @click="goPage(sch.curPage - 1)">이전</a>
+                </li>
+                <li v-for="pCnt in sch.pages" :key="pCnt" :class="{ active: sch.curPage == pCnt }">
+                    <a href="javascript:void(0);" @click="goPage(pCnt)">{{ pCnt }}</a>
+                </li>
+                <li v-if="sch.curPage < sch.totalPages">
+                    <a href="javascript:void(0);" @click="goPage(sch.curPage + 1)">다음</a>
+                </li>
+            </ul>
+        
+	</div>
+</div>
+
+</body>
+</html>

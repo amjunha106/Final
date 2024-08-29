@@ -1,0 +1,30 @@
+package com.web.projectplanner.a03_dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.web.projectplanner.a04_vo.Todo;
+
+@Mapper
+public interface TodoDao {
+    
+	 @Select("SELECT * FROM todo")
+	    List<Todo> findAll();
+
+	    @Insert("INSERT INTO todo (todoid, taskid, empno, taskname, start_date, end_date, status) VALUES (todo_seq.nextval, #{taskid}, #{empno}, #{taskname}, #{start_date}, #{end_date}, #{status})")
+	    void insert(Todo todo);
+
+	    @Update("UPDATE todo SET taskid=#{taskid}, empno=#{empno}, taskname=#{taskname}, start_date=#{start_date}, end_date=#{end_date}, status=#{status} WHERE todoid=#{todoid}")
+	    void update(Todo todo);
+
+	    @Delete("DELETE FROM todo WHERE todoid=#{todoid}")
+	    void delete(Long todoid);
+
+	    @Select("SELECT * FROM todo WHERE projectid = #{projectid}")
+	    List<Todo> findTodosByProjectId(Long projectid);
+}

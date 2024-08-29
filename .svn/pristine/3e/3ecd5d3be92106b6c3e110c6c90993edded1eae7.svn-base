@@ -1,0 +1,60 @@
+package com.web.projectplanner.a01_controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.web.projectplanner.a02_service.TodoService;
+import com.web.projectplanner.a04_vo.Todo;
+
+@Controller
+public class TodoController {
+
+    @Autowired
+    private TodoService todoService;
+
+    @GetMapping("/todos")
+    @ResponseBody
+    public List<Todo> getTodos() {
+        return todoService.getAllTodos();
+    }
+
+    @PostMapping("/projects/{projectid}/todos")
+    @ResponseBody
+    public String insertTodo(@RequestBody Todo todo,@PathVariable Long projectid) {
+        todoService.insertTodo(todo);
+        return "todoList";
+    }
+
+    @PutMapping("/todos/{todoid}")
+    @ResponseBody
+    public String updateTodo(@PathVariable Long todoid, @RequestBody Todo todo) {
+        todo.setTodoid(todoid);
+        todoService.updateTodo(todo);
+        return "redirect:/projects/" + todo.getProjectId() + "/todo";
+    }
+
+    @DeleteMapping("/todos/{todoid}")
+    @ResponseBody
+    public String deleteTodo(@PathVariable Long todoid) {
+        todoService.deleteTodo(todoid);
+        return "redirect:/projects/{projectid}/todo";
+    }
+
+    @GetMapping("/projects/{projectid}/todo")
+    public String getProjectTodoList(@PathVariable Long projectid, Model model) {
+        List<Todo> todos = todoService.getTodosByProjectId(projectid);
+        model.addAttribute("todos", todos);
+        return "todoList";
+    }
+}

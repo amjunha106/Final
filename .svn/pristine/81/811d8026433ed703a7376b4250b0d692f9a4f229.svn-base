@@ -1,0 +1,412 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="java.util.*"
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<fmt:requestEncoding value="utf-8"/>     
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>PROJECT PLANNER BUDGET</title>
+<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css">
+<link rel="stylesheet" href="${path}/a00_com/css/styles.css">
+<link href="${path}/a00_com/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link href="${path}/a00_com/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="${path}/a00_com/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="${path}/a00_com/jquery.min.js"></script>
+<script src="${path}/a00_com/popper.min.js"></script>
+<script src="${path}/a00_com/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="${path}/a00_com/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<style>
+/* General Body Styles */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    display: flex;
+}
+
+.sidebar {
+    width: 225px;
+    background-color: #343a40;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0; 
+    left: 0;
+    overflow-y: auto;
+}
+
+.content-wrapper {
+    margin-left: 225px;
+    width: calc(100% - 225px);
+}
+
+header {
+    background-color: #3498DB;
+    color: white;
+    padding: 10px 0;
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav h2 {
+    text-align: center;
+    font-size: 20px;
+    margin: 0;
+    color: white;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Content Section Styles */
+.mem-content {
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: none; /* 그림자 제거 */
+    position: absolute;
+    top: 70px; /* 위치를 조금 위로 올림 */
+    left: 65%; /* 왼쪽에서 65%로 이동시켜 오른쪽으로 이동 */
+    transform: translateX(-65%);
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+    border: none; /* 테두리 제거 */
+    color: #333;
+}
+
+/* Project Budget Management Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #0288d1;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+td:nth-child(2) {
+    background-color: #b3e5fc;
+    text-align: center;
+}
+
+/* Button Styles */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* 공간을 왼쪽과 오른쪽으로 나누기 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-top: 20px;
+}
+
+.button-container .btn-left {
+    margin-right: auto; /* 왼쪽 버튼을 왼쪽으로 정렬 */
+}
+
+.button-container .btn-right {
+    margin-left: auto; /* 오른쪽 버튼을 오른쪽으로 정렬 */
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-green {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-blue {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-red {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-coral {
+    background-color: #F08080;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #01579b;
+    color: white;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Center alignment */
+.center-text {
+    text-align: center;
+    margin-top: 20px;
+    color: inherit; /* 텍스트 색상을 상속하도록 설정 */
+    background-color: transparent; /* 배경색을 투명으로 설정 */
+}
+
+h2 {
+    text-align: center;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* 너비를 조정합니다 */
+    max-width: 800px; /* 최대 너비를 설정하여 너무 커지지 않게 합니다 */
+}
+
+.modal-content h2 {
+    font-size: 20px; /* 제목 크기 조정 */
+    margin-bottom: 20px;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    
+}
+
+.modal-table, .modal-table th, .modal-table td {
+    border: 1px solid #ddd;
+}
+
+.modal-table th, .modal-table td {
+    padding: 8px; /* 셀의 패딩을 줄입니다 */
+    font-size: 13px; /* 폰트 크기를 줄입니다 */
+}
+
+.modal-table th {
+    background-color: #0288d1;
+    color: white;
+}
+
+.modal-table td {
+    text-align: left;
+    color: black;
+}
+
+.modal-table th:nth-child(1), .modal-table td:nth-child(1) {
+    width: 20%; /* 날짜, 항목, 금액, 설명, 상태, 비고 칸의 너비를 줄입니다 */
+}
+
+.modal-table th:nth-child(2), .modal-table td:nth-child(2) {
+    width: 80%; /* 내용 칸을 넓힙니다 */
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-buttons button {
+    padding: 8px 16px; /* 버튼의 패딩을 줄입니다 */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px; /* 버튼의 폰트 크기를 줄입니다 */
+}
+
+.btn-left {
+    margin-right: auto; /* 왼쪽 버튼을 왼쪽으로 정렬 */
+}
+
+.btn-right {
+    margin-left: auto; /* 오른쪽 버튼을 오른쪽으로 정렬 */
+}
+
+</style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="sidebar">
+            <%@ include file="a02_sliderBar.jsp" %>
+        </div>
+        <div id="content-wrapper" class="content-wrapper">
+            <%@ include file="a03_topBar.jsp" %>
+            
+            <h2>프로젝트 예산 관리</h2>
+            <hr>
+            <main> 
+                <section class="mem-content"><br><br><br><br>
+                <h4 style="text-align: center;">프로젝트 예산 목록</h4>            
+                     <table>
+                        <tr>
+                            <th>항목</th>
+                            <th>내용</th>
+                        </tr>
+                        <tr>
+                            <td>1. 프로젝트명</td>
+                            <td>PMS 프로젝트</td>
+                        </tr>
+                        <tr>
+                            <td>2. 프로젝트 ID</td>
+                            <td>PP-101</td>
+                        </tr>
+                        <tr>
+                            <td>3. 예산 항목</td>
+                            <td>디자인 비용</td>
+                        </tr>
+                        <tr>
+                            <td>4. 예상 비용</td>
+                            <td>5,000,000 원</td>
+                        </tr>
+                        <tr>
+                            <td>5. 실제 비용</td>
+                            <td>2,500,000 원</td>
+                        </tr>
+                        <tr>
+                            <td>6. 예산 사용 비율(%)</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td>7. 예산 사용 상태</td>
+                            <td>정상</td>
+                        </tr>
+                        <tr>
+                            <td>8. 담당자</td>
+                            <td>홍길동</td>
+                        </tr>
+                        <tr>
+                            <td>9. 예산 승인 상태</td>
+                            <td>승인됨</td>
+                        </tr>
+                    </table>
+                    <div class="button-container">
+                        <button class="btn-green btn-left" id="showModalBtn">지출내역</button>
+                        <div>
+                            <button class="btn-coral btn-right">등록</button>&nbsp;
+                            <button class="btn-blue btn-right">수정</button>&nbsp;
+                            <button class="btn-red btn-right">삭제</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><b>프로젝트 지출 내역</b></h2>
+            <table class="modal-table">
+                <tr>
+                    <th>날짜</th>
+                    <td>2024-08-09</td>
+                </tr>
+                <tr>
+                    <th>담당자</th>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <th>항목</th>
+                    <td>UI 디자인</td>
+                </tr>
+                <tr>
+                    <th>금액</th>
+                    <td>600,000원</td>
+                </tr>
+                <tr>
+                    <th>설명</th>
+                    <td>메인페이지 UI 디자인</td>
+                </tr>
+                <tr>
+                    <th>상태</th>
+                    <td>완료</td>
+                </tr>
+                <tr>
+                    <th>비고</th>
+                    <td>추가 디자인 요청 예정</td>
+                </tr>
+            </table>
+            <div class="modal-buttons">
+                <button class="btn-green btn-left">등록</button>
+                <button class="btn-blue btn-right" style="margin-right:-200px;">수정</button>
+                <button class="btn-red btn-right">삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    //프로젝트 제출내역 모달창
+    var modal = document.getElementById("myModal");
+    //제출내역 버튼
+    var btn = document.getElementById("showModalBtn");
+    //프로젝트 제출내역 모달창 닫기 
+    var span = document.getElementsByClassName("close")[0];
+
+    //제출내역 버튼 클릭 시, 모달창 열기
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    //x표시 클릭 시, 모달창 닫기
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    //x표시 이외에, 외부 화면 클릭 시, 모달창 닫기
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    </script>
+</body>
+</html>

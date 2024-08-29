@@ -1,0 +1,48 @@
+package com.web.projectplanner.a01_controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.web.projectplanner.a02_service.BudgetService;
+import com.web.projectplanner.a04_vo.Budget;
+
+@Controller
+public class BudgetController {
+    @Autowired(required = false)
+    private BudgetService budgetservice;
+    
+    
+ // http://localhost:7070/budget
+    @GetMapping("budget")
+    public String budget() {
+        return "budget";
+    }
+    
+    @RequestMapping("budgetList")
+    public String budgetList(Budget sch, Model d) {
+        d.addAttribute("budgetList", budgetservice.getBudgetList(sch));
+        return "budget";
+    }   
+
+    @PostMapping("insertBudget")
+    public String insertBudget(Budget ins, Model d) {
+        d.addAttribute("msg", budgetservice.insertBudget(ins));
+        return "budget";
+    }
+
+    @PostMapping("updateBudget")
+    public String updateBudget(Budget upt, Model d) {
+        d.addAttribute("msg", budgetservice.updateBudget(upt));
+        return "budget";
+    }
+    
+    @PostMapping("deleteBudget")
+    public String deleteBudget(int budid, Model d) {
+        d.addAttribute("msg", budgetservice.deleteBudget(budid));
+        return "budget";
+    }
+}
