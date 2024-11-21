@@ -70,7 +70,7 @@
 <br>
 <h1>팀원소개 및 역할분담</h1>
 <img src="/images/image2.png" alt="Image">
-
+<br/>
 <h1>프로젝트 기술스택</h1>
 <h2>프론트엔드 (Front-end)</h2>
 <ul>
@@ -88,13 +88,13 @@
 <ul>
   <li>Oracle : 사원정보/일정/게시판의 데이터를 저장하고 조회하기위해 사용하였습니다.</li>
 </ul>
-
+<br/>
 <h1>프로젝트 관리도구</h1>
 <h2>파일 관리 (File Management)</h2>
 <ul>
   <li>Svn : 코드를 새로 작성하거나 업데이트시 바로 공유하기위해 사용하였습니다.</li>
 </ul>
-
+<br/>
 <h1>1. Calendar</h1>
 <h3>개인/팀/간트차트 별 일정조회, 체크박스 여부에 따라 여러일정을 한번에 조회</h3>
 <img src="/gifs/gif1.gif" width="950px" alt="Image">
