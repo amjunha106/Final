@@ -61,7 +61,7 @@
 <img src="/images/image7.png" alt="Image">
 
 <h1> 3. 메일전송(언어변경)</h1>
-<h4>상대방에게 메일전송이 가능하며 한국어/영어 언어변경이 가능하고 사원메일주소 조회가능</h4>
+<h4>상대방에게 메일전송이 가능하며 한국어/영어 언어변경이 가능하고 사원메일주소 조회가능(vue.js)</h4>
 <img src="/images/image8.png" alt="Image">
 <img src="/images/image9.png" alt="Image">
 <img src="/images/image10.png" alt="Image">
