@@ -94,7 +94,6 @@
 여러일정을 한번에 조회가능</h4>
 <video width="640" height="360" loop>
   <source src="/videos/video1.mkv" type="video/x-matroska">
-Your browser does not support the video tag
 </video>
 
 <h1>2. 자유게시판</h1>
