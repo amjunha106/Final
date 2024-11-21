@@ -91,8 +91,11 @@
 
 <h1>1. Calendar</h1>
 <h4>개인/팀/간트차트 별 일정조회가 가능하며 프로젝트 선택가능하고, 체크박스 여부에 따라<br/> 
-여러일정을 한번에 조회가능하고 등록/수정(드래그 & 드랍)/삭제기능 제작</h4>
-<img src="/images/image3.png" alt="Image">
+여러일정을 한번에 조회가능</h4>
+<video width="640" height="360" loop>
+  <source src="/videos/video1.mkv" type="video/x-matroska">
+Your browser does not support the video tag
+</video>
 
 <h1>2. 자유게시판</h1>
 <h4>전체게시글 조회, 제목or작성자로 게시글검색 게시글10개마다 페이징처리</h4>
