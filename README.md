@@ -12,7 +12,88 @@
   <summary>프로젝트 구조</summary>
 
   <pre>
-  
+    C:.
+├─java
+│  └─com
+│      └─web
+│          └─projectplanner
+│              ├─a00_configure
+│              ├─a01_controller
+│              ├─a02_service
+│              ├─a03_dao
+│              ├─a04_vo
+│              ├─a05_util
+│              └─aspect
+├─resource
+├─resources
+│  ├─messages
+│  └─static
+└─webapp
+    ├─a00_com
+    │  ├─css
+    │  │  └─ui-lightness
+    │  │      └─images
+    │  ├─dist
+    │  ├─gantt
+    │  │  ├─codebase
+    │  │  │  ├─skins
+    │  │  │  └─sources
+    │  │  │      └─skins
+    │  │  └─common
+    │  │      ├─sample_images
+    │  │      └─snippets
+    │  ├─images
+    │  ├─img
+    │  ├─js
+    │  │  └─demo
+    │  ├─lib
+    │  │  └─locales
+    │  ├─packages
+    │  │  ├─bootstrap
+    │  │  ├─bundle
+    │  │  │  └─locales
+    │  │  ├─core
+    │  │  │  └─locales
+    │  │  ├─daygrid
+    │  │  ├─google-calendar
+    │  │  ├─interaction
+    │  │  ├─list
+    │  │  ├─luxon
+    │  │  ├─moment
+    │  │  ├─moment-timezone
+    │  │  ├─rrule
+    │  │  └─timegrid
+    │  ├─scss
+    │  │  ├─navs
+    │  │  └─utilities
+    │  └─vendor
+    │      ├─bootstrap
+    │      │  ├─js
+    │      │  └─scss
+    │      │      ├─mixins
+    │      │      ├─utilities
+    │      │      └─vendor
+    │      ├─chart.js
+    │      ├─datatables
+    │      ├─fontawesome-free
+    │      │  ├─css
+    │      │  ├─js
+    │      │  ├─less
+    │      │  ├─metadata
+    │      │  ├─scss
+    │      │  ├─sprites
+    │      │  ├─svgs
+    │      │  │  ├─brands
+    │      │  │  ├─regular
+    │      │  │  └─solid
+    │      │  └─webfonts
+    │      ├─jquery
+    │      └─jquery-easing
+    ├─img
+    ├─WEB-INF
+    │  └─views
+    ├─z01_upload
+    └─z05_bootTmp
   </pre>
 </details>
 
