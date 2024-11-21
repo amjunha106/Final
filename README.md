@@ -92,9 +92,7 @@
 <h1>1. Calendar</h1>
 <h4>개인/팀/간트차트 별 일정조회가 가능하며 프로젝트 선택가능하고, 체크박스 여부에 따라<br/> 
 여러일정을 한번에 조회가능</h4>
-<video width="640" height="360" loop>
-  <source src="/videos/video1.mp4" type="video/mp4">
-</video>
+<img src="/gifs/gif1.gif" alt="Image">
 
 <h1>2. 자유게시판</h1>
 <h4>전체게시글 조회, 제목or작성자로 게시글검색 게시글10개마다 페이징처리</h4>
