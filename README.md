@@ -18,80 +18,50 @@
 │      └─web
 │          └─projectplanner
 │              ├─a00_configure
+│              │  └─WebConfig.java (메일언어변경)
 │              ├─a01_controller
+│              │  └─CalendarController.java (캘린더)
+│              │  └─FreeBoardController.java (자유게시판)
+│              │  └─MailController.java (메일전송)
+│              │  └─ReplyController.java (게시판-댓글)
 │              ├─a02_service
+│              │  └─CalendarService.java
+│              │  └─FileUploadService.java (파일업로드)
+│              │  └─FreeBoardService.java
+│              │  └─MailService.java
+│              │  └─ReplyService.java
 │              ├─a03_dao
+│              │  └─CalendarDao.java
+│              │  └─FreeBoardDao.java
+│              │  └─MailDao.java
+│              │  └─ReplyDao.java
 │              ├─a04_vo
+│              │  └─Calendar.java
+│              │  └─FreeBoard.java
+│              │  └─FreeBoardFile.java
+│              │  └─FreeBoardSch.java
+│              │  └─Mail.java
+│              │  └─Reply.java
 │              ├─a05_util
 │              └─aspect
 ├─resource
 ├─resources
 │  ├─messages
+│  │    └─messages_en.properties
+│  │    └─messages_ko.properties
+│  │    └─messages.properties
 │  └─static
+│      └─z06_emailList.html (사원메일조회)
 └─webapp
     ├─a00_com
-    │  ├─css
-    │  │  └─ui-lightness
-    │  │      └─images
-    │  ├─dist
-    │  ├─gantt
-    │  │  ├─codebase
-    │  │  │  ├─skins
-    │  │  │  └─sources
-    │  │  │      └─skins
-    │  │  └─common
-    │  │      ├─sample_images
-    │  │      └─snippets
-    │  ├─images
-    │  ├─img
-    │  ├─js
-    │  │  └─demo
-    │  ├─lib
-    │  │  └─locales
-    │  ├─packages
-    │  │  ├─bootstrap
-    │  │  ├─bundle
-    │  │  │  └─locales
-    │  │  ├─core
-    │  │  │  └─locales
-    │  │  ├─daygrid
-    │  │  ├─google-calendar
-    │  │  ├─interaction
-    │  │  ├─list
-    │  │  ├─luxon
-    │  │  ├─moment
-    │  │  ├─moment-timezone
-    │  │  ├─rrule
-    │  │  └─timegrid
-    │  ├─scss
-    │  │  ├─navs
-    │  │  └─utilities
-    │  └─vendor
-    │      ├─bootstrap
-    │      │  ├─js
-    │      │  └─scss
-    │      │      ├─mixins
-    │      │      ├─utilities
-    │      │      └─vendor
-    │      ├─chart.js
-    │      ├─datatables
-    │      ├─fontawesome-free
-    │      │  ├─css
-    │      │  ├─js
-    │      │  ├─less
-    │      │  ├─metadata
-    │      │  ├─scss
-    │      │  ├─sprites
-    │      │  ├─svgs
-    │      │  │  ├─brands
-    │      │  │  ├─regular
-    │      │  │  └─solid
-    │      │  └─webfonts
-    │      ├─jquery
-    │      └─jquery-easing
     ├─img
     ├─WEB-INF
     │  └─views
+    │      └─z01_FreeBoardList.jsp
+    │      └─z02_FreeBoaredInsert.jsp
+    │      └─z03_FreeBoardDetail.jsp
+    │      └─z04_MailFrm.jsp
+    │      └─z05_Calender.jsp
     ├─z01_upload
     └─z05_bootTmp
   </pre>
