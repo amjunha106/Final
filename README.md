@@ -93,7 +93,7 @@
 <h4>개인/팀/간트차트 별 일정조회가 가능하며 프로젝트 선택가능하고, 체크박스 여부에 따라<br/> 
 여러일정을 한번에 조회가능</h4>
 <video width="640" height="360" loop>
-  <source src="/videos/video1.mkv" type="video/x-matroska">
+  <source src="/videos/video1.mp4" type="video/mp4">
 </video>
 
 <h1>2. 자유게시판</h1>
