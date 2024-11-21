@@ -111,7 +111,7 @@
 <h3>게시글상세 확인가능, 업로드된 첨부파일 다운로드</h3>
 <img src="/gifs/gif6.gif" width="950px" alt="Image">
 <h3>게시글 수정/삭제</h3>
-<img src="/gifs/gif6.gif" width="950px" alt="Image">
+<img src="/gifs/gif7.gif" width="950px" alt="Image">
 
 <h1>2-3) 자유게시판 - 댓글등록/삭제</h1>
 <h3>해당 게시글에 댓글등록/삭제 가능</h3>
