@@ -104,6 +104,8 @@
 <img src="/images/일정등록.png" width="950px" alt="Image">
 <h3>일정수정/삭제</h3>
 <img src="/gifs/gif3.gif" width="950px" alt="Image">
+<img src="/images/일정수정.png" width="950px" alt="Image">
+<img src="/images/일정삭제.png" width="950px" alt="Image">
 
 <h1>2. 자유게시판</h1>
 <h3>전체게시글 조회, 게시글10개마다 페이징처리</h3>
