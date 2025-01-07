@@ -132,6 +132,8 @@
 <h1>2-3) 자유게시판 - 댓글등록/삭제</h1>
 <h3>해당 게시글에 댓글등록/삭제 가능</h3>
 <img src="/gifs/gif8.gif" width="950px" alt="Image">
+<img src="/images/댓글등록.png" width="950px" alt="Image">
+<img src="/images/댓글삭제.png" width="950px" alt="Image">
 
 <h1> 3. 메일전송(언어변경)</h1>
 <h3>상대방에게 메일전송</h3>
