@@ -119,12 +119,15 @@
 <h1>2-1) 자유게시판 - 게시글 등록</h1>
 <h3>제목과 내용을 입력 후 게시글등록, 파일업로드 가능</h3>
 <img src="/gifs/gif5.gif" width="950px" alt="Image">
+<img src="/images/자유게시판글등록.png" width="950px" alt="Image">
 
 <h1>2-2) 자유게시판 - 게시글상세</h1>
 <h3>게시글상세 확인가능, 업로드된 첨부파일 다운로드</h3>
 <img src="/gifs/gif6.gif" width="950px" alt="Image">
+<img src="/images/자유게시판상세.png" width="950px" alt="Image">
 <h3>게시글 수정/삭제</h3>
 <img src="/gifs/gif7.gif" width="950px" alt="Image">
+<img src="/images/자유게시판수정삭제.png" width="950px" alt="Image">
 
 <h1>2-3) 자유게시판 - 댓글등록/삭제</h1>
 <h3>해당 게시글에 댓글등록/삭제 가능</h3>
