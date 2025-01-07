@@ -101,6 +101,7 @@
 <img src="/images/캘린더 조회.png" width="950px" alt="Image">
 <h3>일정등록</h3>
 <img src="/gifs/gif2.gif" width="950px" alt="Image">
+<img src="/images/일정등록.png" width="950px" alt="Image">
 <h3>일정수정/삭제</h3>
 <img src="/gifs/gif3.gif" width="950px" alt="Image">
 
