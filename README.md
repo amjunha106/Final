@@ -110,6 +110,9 @@
 <h1>2. 자유게시판</h1>
 <h3>전체게시글 조회, 게시글10개마다 페이징처리</h3>
 <img src="/gifs/gif4.gif" width="950px" alt="Image">
+<img src="/images/자유게시판조회.png" width="950px" alt="Image">
+<img src="/images/페이징처리.png" width="950px" alt="Image">
+
 <h3>제목or작성자로 게시글검색</h3>
 <img src="/gifs/gif9.gif" width="950px" alt="Image">
 
