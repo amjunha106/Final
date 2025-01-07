@@ -98,6 +98,7 @@
 <h1>1. Calendar</h1>
 <h3>개인/팀/간트차트 별 일정조회, 체크박스 여부에 따라 여러일정을 한번에 조회</h3>
 <img src="/gifs/gif1.gif" width="950px" alt="Image">
+<img src="/images/캘린더 조회.png" width="950px" alt="Image">
 <h3>일정등록</h3>
 <img src="/gifs/gif2.gif" width="950px" alt="Image">
 <h3>일정수정/삭제</h3>
